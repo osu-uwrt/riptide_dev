@@ -2,10 +2,6 @@
 	path = dependencies/nortek_dvl
 	url = https://github.com/osu-uwrt/nortek_dvl.git
 	branch = ros2_dev
-[submodule "dependencies/vectornav"]
-	path = dependencies/vectornav
-	url = https://github.com/coalman321/vectornav.git
-	branch = ros2
 [submodule "dependencies/zed-ros2-wrapper"]
 	path = dependencies/zed-ros2-wrapper
 	url = https://github.com/stereolabs/zed-ros2-wrapper.git
