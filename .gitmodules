@@ -46,3 +46,7 @@
 	path = software/riptide_simulator
 	url = https://github.com/osu-uwrt/riptide_simulator.git
 	branch = master
+[submodule "software/riptide_slam"]
+	path = software/riptide_slam
+	url = https://github.com/osu-uwrt/riptide_slam.git
+	branch = master
