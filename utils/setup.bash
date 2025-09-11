@@ -6,8 +6,7 @@ fi
 
 # Install Click for uwrt cli
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y python3-termcolor python3-pip
-sudo pip3 install click
+sudo apt install -y python3-click python3-termcolor python3-pip
 
 # Add utils to path
 export PATH=${PWD}/utils/bin:${PATH}

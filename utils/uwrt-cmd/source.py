@@ -39,15 +39,17 @@ def list():
     files = sources_path.glob("*")
 
     for file in files:
+        desc = file.open()
+        desc.readline()
         if file.name.endswith(".bash"):
-            print(colored(file.name, "green"))
+            print(colored(file.name, "green") + " - " + desc.readline()[1:-1])
         elif file.name.endswith(".bash.d"):
-            print(colored(file.name[0:-2], "red"))
+            print(colored(file.name[0:-2] , "red") + " - " + desc.readline()[1:-1])
 
 
 
 @command.command("enable")
-@click.argument("script", shell_complete=disabled)
+@click.argument("script", autocompletion=disabled)
 def enable(script):
     """Enable a Source Script"""
 
@@ -68,7 +70,7 @@ def enable(script):
     disabled_path.rename(enabled_path)
 
 @command.command("disable")
-@click.argument("script", shell_complete=enabled)
+@click.argument("script", autocompletion=enabled)
 def disable(script: str):
     
     enabled_path = sources_path / script
