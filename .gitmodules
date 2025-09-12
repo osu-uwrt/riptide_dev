@@ -1,49 +1,49 @@
-[submodule "dependencies/nortek_dvl"]
-	path = dependencies/nortek_dvl
+[submodule "dependencies/src/nortek_dvl"]
+	path = dependencies/src/src/nortek_dvl
 	url = https://github.com/osu-uwrt/nortek_dvl.git
 	branch = ros2_dev
-[submodule "dependencies/zed-ros2-wrapper"]
-	path = dependencies/zed-ros2-wrapper
+[submodule "dependencies/src/zed-ros2-wrapper"]
+	path = dependencies/src/src/zed-ros2-wrapper
 	url = https://github.com/stereolabs/zed-ros2-wrapper.git
 	branch = master
-[submodule "dependencies/chameleon_tf"]
-	path = dependencies/chameleon_tf
+[submodule "dependencies/src/chameleon_tf"]
+	path = dependencies/src/src/chameleon_tf
 	url = https://github.com/coalman321/chameleon_tf.git
 	branch = master
 [submodule "titan_firmware"]
 	path = titan_firmware
 	url = https://github.com/osu-uwrt/titan_firmware.git
 	branch = master
-[submodule "software/riptide_autonomy"]
-	path = software/riptide_autonomy
+[submodule "software/src/riptide_autonomy"]
+	path = software/src/src/riptide_autonomy
 	url = https://github.com/osu-uwrt/riptide_autonomy.git
 	branch = ros2
-[submodule "software/riptide_control"]
-	path = software/riptide_control
+[submodule "software/src/riptide_control"]
+	path = software/src/src/riptide_control
 	url = https://github.com/osu-uwrt/riptide_control.git
 	branch = master
-[submodule "software/riptide_core"]
-	path = software/riptide_core
+[submodule "software/src/riptide_core"]
+	path = software/src/src/riptide_core
 	url = https://github.com/osu-uwrt/riptide_core.git
 	branch = master
-[submodule "software/riptide_launch"]
-	path = software/riptide_launch
+[submodule "software/src/riptide_launch"]
+	path = software/src/src/riptide_launch
 	url = https://github.com/osu-uwrt/riptide_launch.git
 	branch = master
-[submodule "software/riptide_perception"]
-	path = software/riptide_perception
+[submodule "software/src/riptide_perception"]
+	path = software/src/src/riptide_perception
 	url = https://github.com/osu-uwrt/riptide_perception.git
 	branch = master
-[submodule "software/riptide_gui"]
-	path = software/riptide_gui
+[submodule "software/src/riptide_gui"]
+	path = software/src/src/riptide_gui
 	url = https://github.com/osu-uwrt/riptide_gui.git
 	branch = master
-[submodule "software/riptide_simulator"]
-	path = software/riptide_simulator
+[submodule "software/src/riptide_simulator"]
+	path = software/src/src/riptide_simulator
 	url = https://github.com/osu-uwrt/riptide_simulator.git
 	branch = master
-[submodule "software/riptide_slam"]
-	path = software/riptide_slam
+[submodule "software/src/riptide_slam"]
+	path = software/src/src/riptide_slam
 	url = https://github.com/osu-uwrt/riptide_slam.git
 	branch = master
 [submodule "uwrt_docs"]
