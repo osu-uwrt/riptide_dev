@@ -14,5 +14,5 @@ sudo apt install -y python3-click python3-termcolor python3-pip
 export PATH=${PWD}/utils/bin:${PATH}
 
 for script in ./utils/scripts/setup/*.bash; do
-    bash $script
+    source $script
 done
