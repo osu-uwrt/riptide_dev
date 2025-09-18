@@ -2,10 +2,6 @@
 	path = dependencies/src/nortek_dvl
 	url = https://github.com/osu-uwrt/nortek_dvl.git
 	branch = ros2_dev
-[submodule "dependencies/src/zed-ros2-wrapper"]
-	path = dependencies/src/zed-ros2-wrapper
-	url = https://github.com/stereolabs/zed-ros2-wrapper.git
-	branch = master
 [submodule "dependencies/src/chameleon_tf"]
 	path = dependencies/src/chameleon_tf
 	url = https://github.com/coalman321/chameleon_tf.git
