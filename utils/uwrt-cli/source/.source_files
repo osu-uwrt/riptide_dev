@@ -1,1 +1,3 @@
 ROS /opt/ros/humble/setup.bash
+riptide_software /workspaces/riptidedev/software/install/setup.bash
+riptide_dependencies /workspaces/riptidedev/dependencies/install/setup.bash
