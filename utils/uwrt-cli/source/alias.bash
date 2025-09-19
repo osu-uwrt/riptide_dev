@@ -1,4 +1,4 @@
 #!/bin/bash
 
-alias reset=''exec sudo --login --user $USER''
+alias reset='exec sudo --login --user $USER'
 alias src='source ~/.bashrc'

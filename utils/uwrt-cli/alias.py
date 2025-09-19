@@ -19,7 +19,9 @@ script.readline()
 
 for line in script:
     alias = line[len("alias "):].split("=")
-    aliases[alias[0]] = alias[1]
+
+    # [1:-1] removes quotes so they aren't stacked
+    aliases[alias[0]] = alias[1].strip(' \n')[1:-1]
 
 script.close()
 
@@ -39,7 +41,7 @@ def list():
     
     for alias, cmd in aliases.items():
         # Newline is already there
-        print(f"{alias} -> {cmd}", end="")
+        print(f"{alias} -> {cmd}")
 
 @command.command("set")
 @click.argument("alias")

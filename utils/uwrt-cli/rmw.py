@@ -79,10 +79,10 @@ def option_autocomplete(ctx, param, incomplete):
     
     return [i for i in config["middleware"][config["active"]]["options"].keys() if i.startswith(incomplete)]
 
-@command.command("option")
+@command.command("options")
 @click.argument("name", required=False, shell_complete=option_autocomplete)
 @click.argument("value", required=False)
-def option(name, value):
+def options(name, value):
     """
     Sets Options for the Active Middleware
 
