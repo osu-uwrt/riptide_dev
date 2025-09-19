@@ -10,6 +10,9 @@ touch ~/.setup
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3-click python3-termcolor python3-pip
 
+# Install Packages that aren't shipped in devcontainer
+sudo apt install -y fuse3 openssh-client
+
 # Add utils to path
 export PATH=${PWD}/utils/bin:${PATH}
 

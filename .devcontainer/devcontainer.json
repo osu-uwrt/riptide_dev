@@ -17,7 +17,7 @@
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
     ],
 
-    "postStartCommand": "/bin/bash ./utils/setup.bash",
+    "postCreateCommand": "/bin/bash ./utils/setup.bash",
 
     "remoteUser": "root"
 }
