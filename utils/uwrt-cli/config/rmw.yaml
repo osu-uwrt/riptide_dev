@@ -8,13 +8,12 @@ middleware:
         value: ''
   rmw_zenoh_cpp:
     description: Zenoh Middleware
+    env:
+      ZENOH_CONFIG_OVERRIDE: connect/endpoints=[${ZENOH_ENDPOINTS}];transport/shared_memory/enabled=${ZENOH_SHM}
     options:
-      0_ZENOH_ENDPOINTS:
+      ZENOH_ENDPOINTS:
         description: Comma Seperated List of Quoted Endpoints '"tcp/127.0.0.1:7447"'
         value: ''
-      0_ZENOH_SHM:
+      ZENOH_SHM:
         description: Should Shared Memory be Used
         value: 'false'
-      ZENOH_CONFIG_OVERRIDE:
-        description: Override Zenoh Config using Environment
-        value: connect/endpoints=[${0_ZENOH_ENDPOINTS}];transport/shared_memory/enabled=${0_ZENOH_SHM}

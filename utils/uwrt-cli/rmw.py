@@ -27,6 +27,10 @@ def write_bash():
     for opt, data in config["middleware"][rmw]["options"].items():
         bash_script.write(f"export {opt}={data['value']}\n")
 
+    if "env" in config["middleware"][rmw]:
+        for k, v in config["middleware"][rmw]["env"].items():
+            bash_script.write(f"export {k}=\"{v}\"\n")
+
     bash_script.close()
 
 # Create Command Group
