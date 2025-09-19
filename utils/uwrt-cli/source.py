@@ -1,93 +1,75 @@
+#!/bin/env python3
+
 import click
-import os
-from pathlib import Path
+import pathlib
+import glob
 from termcolor import colored
 
-uwrt_path = os.getenv("UWRT_PATH")
-if uwrt_path is None:
-    print(colored("UWRT Path not Set", "red"))
+scripts_file = pathlib.Path(__file__).resolve().parent / "source" / ".source_files"
+scripts_file.touch()
 
-sources_path = Path(uwrt_path) / "utils" / "scripts" / "source"
+scripts = {}
 
-# Returns list of all enabled scripts
-def enabled(ctx, param, incomplete):
-    comp: list[str] = []
-    for file in sources_path.glob("*.bash"):
-        if file.name.startswith(incomplete):
-            comp.append(file.name)
+buf = scripts_file.open()
+for script in buf:
+    name, file = script.strip(" \n").split(" ")
+    scripts[name] = file
+buf.close()
 
-    return comp
-
-# Returns list of all disabled scripts
-def disabled(ctx, param, incomplete):
-    comp: list[str] = []
-    for file in sources_path.glob("*.bash.d"):
-        if file.name.startswith(incomplete):
-            comp.append(file.name[0:-2])
-
-    return comp
+def write_scripts():
+    buf = scripts_file.open("w")
+    for name, file in scripts.items():
+        buf.write(f"{name} {file}\n")
+    buf.close()
 
 
-@click.group("source")
-def command():
-    """
-    Enable and Disable Source Scripts
-    """
-    pass
+command = click.Group("source")
 
-help = f"List {colored('Enabled', 'green')} and {colored('Disabled', 'red')} sources"
-@command.command("list", help=help)
+command.help = "Control Source Scripts"
+
+@command.command("list")
 def list():
-    """List Active(Green) and Inactive(Red) Sources"""
-    files = sources_path.glob("*")
-
-    for file in sorted(files):
-        desc = file.open()
-        desc.readline()
-        if file.name.endswith(".bash"):
-            print(colored(file.name, "green") + " - " + desc.readline()[1:-1])
-        elif file.name.endswith(".bash.d"):
-            print(colored(file.name[0:-2] , "red") + " - " + desc.readline()[1:-1])
+    """List Currently Sourced Scripts"""
+    print()
+    for name, file in scripts.items():
+        print(f"{name} - {file}")
+    print()
 
 
+def add_autocomplete(ctx, param, incomplete):
+    arr = glob.glob(f"{incomplete}*")
+    if len(arr) == 1 and '.' not in arr:
+       return add_autocomplete(ctx, param, arr[0] + "/")
+    return arr
 
-@command.command("enable")
-@click.argument("script", autocompletion=disabled)
-def enable(script):
-    """Enable a Source Script"""
+@command.command("add")
+@click.argument("name")
+@click.argument("file", shell_complete=add_autocomplete)
+def add(name, file):
+    """Add a New Script to be Sourced"""
 
-    enabled_path = sources_path / script
-    disabled_path = sources_path / (script + ".d")
+    path = pathlib.Path(file)
 
-    # Check if script is already enabled
-    if enabled_path.is_file():
-        print("Script is already enabled")
-        exit(0)
+    if not path.is_file():
+        print(f"{colored('Error', 'red')} - File not Found")
 
-    # Check if Script Exists
-    if not disabled_path.is_file():
-        print(colored(f"{script} does not exist", "red"))
-        raise FileNotFoundError(script)
+    scripts[name] = str(path.absolute().resolve())
 
-    # Remove the .d enabling the script
-    disabled_path.rename(enabled_path)
+    write_scripts()
 
-@command.command("disable")
-@click.argument("script", autocompletion=enabled)
-def disable(script: str):
-    """Disable a Source Script"""
-    
-    enabled_path = sources_path / script
-    disabled_path = sources_path / (script + ".d")
+    print(f"Added {file} to Sourced Scripts")
 
-    if (disabled_path.is_file()):
-        print("The script is already disabled")
-        exit(0)
 
-    # Check if Script Exists
-    if not enabled_path.is_file():
-        print(colored(f"{script} does not exist", "red"))
-        raise FileNotFoundError(script)
+def rm_autocomplete(ctx, param, incomplete):
+    return [i for i in scripts.keys() if i.startswith(incomplete)]
 
-    enabled_path.rename(disabled_path)
-
+@command.command("rm")
+@click.argument("name", shell_complete=rm_autocomplete)
+def rm(name):
+    """Stop a Script from Being Sourced"""
+    if name in scripts.keys():
+        scripts.pop(name)
+        write_scripts()
+        print(f"Removed {name}")
+    else:
+        print(f"{colored('Error')} - Script is not Sourced Currently")
