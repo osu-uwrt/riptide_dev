@@ -14,7 +14,7 @@ config: dict = yaml.safe_load(config_file.open())
 def write_config():
     yaml.dump(config, config_file.open("w"))
 
-bash_file = pathlib.Path(__file__).parent / "source" / "rmw.yaml"
+bash_file = pathlib.Path(__file__).parent / "source" / "rmw.bash"
 
 def write_bash():
     bash_script = bash_file.open("w")
