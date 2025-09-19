@@ -1,0 +1,11 @@
+active: rmw_fastrtps_cpp
+middleware:
+  rmw_fastrtps_cpp:
+    description: FastDDS Middleware
+    options:
+      FASTDDS_DEFAULT_PROFILES_FILE:
+        description: XML profile for FastDDS Configuration
+        value: ''
+  rmw_zenoh_cpp:
+    description: Zenoh Middleware
+    options: null

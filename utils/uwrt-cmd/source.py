@@ -30,6 +30,9 @@ def disabled(ctx, param, incomplete):
 
 @click.group("source")
 def command():
+    """
+    Enable and Disable Source Scripts
+    """
     pass
 
 help = f"List {colored('Enabled', 'green')} and {colored('Disabled', 'red')} sources"
@@ -38,7 +41,7 @@ def list():
     """List Active(Green) and Inactive(Red) Sources"""
     files = sources_path.glob("*")
 
-    for file in files:
+    for file in sorted(files):
         desc = file.open()
         desc.readline()
         if file.name.endswith(".bash"):
@@ -72,6 +75,7 @@ def enable(script):
 @command.command("disable")
 @click.argument("script", autocompletion=enabled)
 def disable(script: str):
+    """Disable a Source Script"""
     
     enabled_path = sources_path / script
     disabled_path = sources_path / (script + ".d")

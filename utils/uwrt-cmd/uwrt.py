@@ -10,9 +10,10 @@ import types
 wd = Path(__file__).resolve().parent
 modules = wd.glob("*.py")
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 # Create the subcommand group
-@click.group("uwrt")
+@click.group("uwrt", context_settings=CONTEXT_SETTINGS)
 def uwrt():
     pass
 
